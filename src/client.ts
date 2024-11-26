@@ -137,7 +137,7 @@ Rune.initClient({
       const response = game.responses[id]
       if (response.outcomeTerm && !requestedOutcome[id]) {
         requestedOutcome[id] = true
-        getGifs(response.outcomeTerm , 1).then((results) => {
+        getGifs(response.outcomeTerm, 1).then((results) => {
           Rune.actions.setOutcomeGif({
             id,
             url: results.results[0].media_formats.tinygif.url,
@@ -181,10 +181,10 @@ Rune.initClient({
 
         const response = game.responses[game.playerOrder[index]]
         div("resultText").innerHTML = response.outcome ?? ""
-        if (img("resultGif").src  !== response.outcomeUrl) {
+        if (img("resultGif").src !== response.outcomeUrl) {
           img("resultGif").src = response.outcomeUrl ?? ""
         }
-        if (img("inputGif").src  !== response.url) {
+        if (img("inputGif").src !== response.url) {
           img("inputGif").src = response.url ?? ""
         }
       }
