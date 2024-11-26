@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <title>GIF vs AI</title>
+  </head>
+  <body>
+    <div id="page">
+      <div id="startScreen" class="screen off">
+        <div class="logo"></div>
+        <div class="label">
+          Save yourself from death by responding with a ultimate life saving move in the form of a GIF!
+        </div>
+        <div id="startButton" class="button"><div class="gradientText">Start</div></div>
+      </div>
+      <div id="promptScreen" class="screen off">
+        <div class="logo"></div>
+
+        <div class="panel">
+          <div class="panelTitle">File: Gif</div>
+          <div class="panelLabel">A laser beam is slowly moving toward you!</div>
+          <div id="scenarioGif" class="gif"><img id="scenarioGifImg" src="https://media1.tenor.com/m/yjxd7uT4CWsAAAAd/floppa-laser.gif"></div>
+        </div>
+        <div id="promptTimer" class="timer">
+          <div id="promptTimerBar" class="timerBar"></div>
+        </div>
+      </div>
+      <div id="responseScreen" class="screen off">
+
+        <div id="searchPanel" class="panel">
+          <div class="panelTitle">Search</div>
+          <div class="panelLabel">How will your survive?</div>
+          <div id="searchResults"></div>
+        </div>
+        <div id="responseTimer" class="timer">
+          <div id="responseTimerBar" class="timerBar"></div>
+        </div>
+      </div>
+      <div id="outcomeScreen" class="screen enabled">
+        <div id="player">
+          <div id="avatar"><img id="avatarImg" src="https://developers.rune.ai/img/avatar-placeholder.png"/></div>
+          <div id="avatarName"><div class="gradientText">Coke and Code tried...</div></div>
+        </div>
+        <img id="inputGif" src="https://media1.tenor.com/m/yjxd7uT4CWsAAAAd/floppa-laser.gif" class="outputGif selected"></img>
+        <div id="result"><div class="gradientText">Coke And Code attempts to dodge the lazer beam like a ninja but gets caught up in a fiery death.</div></div>
+        <img id="resultGif" src="https://media1.tenor.com/m/yjxd7uT4CWsAAAAd/floppa-laser.gif" class="outputGif selected"></img>
+      </div>
+    </div>
+    <script type="module" src="/src/logic.ts"></script>
+    <script type="module" src="/src/client.ts"></script>
+  </body>
+</html>
