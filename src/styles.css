@@ -205,8 +205,8 @@ body {
   display: flex;
   margin-top: 2vh;
   margin-left: 2vh;
-  width: 80%;
-  margin-left: 10%;
+  width: 95%;
+  margin-left: 2.5%;
 }
 
 #result div {
