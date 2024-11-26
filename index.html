@@ -10,44 +10,50 @@
   </head>
   <body>
     <div id="page">
-      <div id="startScreen" class="screen off">
+      <div id="startScreen" class="screen enabled">
         <div class="logo"></div>
         <div class="label">
           Save yourself from death by responding with a ultimate life saving move in the form of a GIF!
         </div>
         <div id="startButton" class="button"><div class="gradientText">Start</div></div>
       </div>
+      <div id="thinkingScreen" class="screen off">
+        <div class="logo"></div>
+        <div class="label">
+          Lets see who survives...
+        </div>
+      </div>
       <div id="promptScreen" class="screen off">
         <div class="logo"></div>
 
         <div class="panel">
           <div class="panelTitle">File: Gif</div>
-          <div class="panelLabel">A laser beam is slowly moving toward you!</div>
-          <div id="scenarioGif" class="gif"><img id="scenarioGifImg" src="https://media1.tenor.com/m/yjxd7uT4CWsAAAAd/floppa-laser.gif"></div>
+          <div id="scenarioText" class="panelLabel"></div>
+          <div id="scenarioGif" class="gif"><img id="scenarioGifImg" src=""></div>
         </div>
         <div id="promptTimer" class="timer">
           <div id="promptTimerBar" class="timerBar"></div>
         </div>
       </div>
       <div id="responseScreen" class="screen off">
-
         <div id="searchPanel" class="panel">
           <div class="panelTitle">Search</div>
           <div class="panelLabel">How will your survive?</div>
+          <input id="searchInput" type="search"></input>
           <div id="searchResults"></div>
         </div>
         <div id="responseTimer" class="timer">
           <div id="responseTimerBar" class="timerBar"></div>
         </div>
       </div>
-      <div id="outcomeScreen" class="screen enabled">
+      <div id="outcomeScreen" class="screen off">
         <div id="player">
           <div id="avatar"><img id="avatarImg" src="https://developers.rune.ai/img/avatar-placeholder.png"/></div>
-          <div id="avatarName"><div class="gradientText">Coke and Code tried...</div></div>
+          <div id="avatarName"><div class="gradientText"><span id="playerName">Coke and Code</span> tried...</div></div>
         </div>
-        <img id="inputGif" src="https://media1.tenor.com/m/yjxd7uT4CWsAAAAd/floppa-laser.gif" class="outputGif selected"></img>
-        <div id="result"><div class="gradientText">Coke And Code attempts to dodge the lazer beam like a ninja but gets caught up in a fiery death.</div></div>
-        <img id="resultGif" src="https://media1.tenor.com/m/yjxd7uT4CWsAAAAd/floppa-laser.gif" class="outputGif selected"></img>
+        <img id="inputGif" src="" class="outputGif redBorder"></img>
+        <div id="result"><div id="resultText" class="gradientText">Coke And Code attempts to dodge the lazer beam like a ninja but gets caught up in a fiery death.</div></div>
+        <img id="resultGif" src="" class="outputGif redBorder"></img>
       </div>
     </div>
     <script type="module" src="/src/logic.ts"></script>
