@@ -45,8 +45,13 @@ div("doneButton").addEventListener("click", () => {
   Rune.actions.ready()
 })
 
-input("searchInput").addEventListener("keyup", async (e) => {
-  if (e.key === "Enter" || e.keyCode === 13) {
+let debounceInput: number = 0
+
+input("searchInput").addEventListener("input", async () => {
+  if (debounceInput) {
+    clearTimeout(debounceInput)
+  }
+  debounceInput = setTimeout(async () => {
     const term = input("searchInput").value.trim()
     if (term.length > 0) {
       const results = await getGifs(term, 10)
@@ -71,7 +76,7 @@ input("searchInput").addEventListener("keyup", async (e) => {
         div("searchResults").appendChild(img)
       }
     }
-  }
+  }, 250)
 })
 
 div("startButton").addEventListener("click", () => {
