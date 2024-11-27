@@ -27,6 +27,7 @@ export interface GameState {
   timerName: string
   prompting: boolean
   playerOrder: string[]
+  ready: Record<string, boolean>
 }
 
 type GameActions = {
@@ -34,6 +35,7 @@ type GameActions = {
   setScenarioGif: (url: string) => void
   setOutcomeGif: (params: { id: string; url: string }) => void
   start: () => void
+  ready: () => void
 }
 
 declare global {
@@ -62,6 +64,7 @@ Rune.initLogic({
       responses: {},
       prompting: false,
       playerOrder: [],
+      ready: {},
     }
   },
   updatesPerSecond: 10,
@@ -85,6 +88,8 @@ Rune.initLogic({
         Rune.ai.promptRequest({
           messages: [{ role: "user", content: RESPONSE_PROMPT + input }],
         })
+      } else if (game.timerName === "outcome") {
+        Rune.gameOver()
       }
     }
   },
@@ -156,7 +161,6 @@ Rune.initLogic({
     },
     respond: (data, { game, playerId }) => {
       game.responses[playerId] = data
-      console.log(data)
     },
     start: (_, { game }) => {
       if (!game.started) {
@@ -164,6 +168,18 @@ Rune.initLogic({
         Rune.ai.promptRequest({
           messages: [{ role: "user", content: SCENARIO_PROMPT }],
         })
+      }
+    },
+    ready: (_, { game, allPlayerIds, playerId }) => {
+      if (game.timerName === "respond") {
+        game.ready[playerId] = true
+        for (const id of allPlayerIds) {
+          if (!game.ready[id]) {
+            return
+          }
+        }
+
+        game.timerEndsAt = Rune.gameTime() + 1000
       }
     },
   },

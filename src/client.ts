@@ -6,6 +6,8 @@ import clickUrl from "./assets/click.mp3"
 
 const MUSIC = new Audio()
 MUSIC.src = musicUrl
+MUSIC.loop = true
+
 const CLICK = new Audio()
 CLICK.src = clickUrl
 
@@ -36,6 +38,13 @@ async function getGifs(query: string, limit: number) {
   return json
 }
 
+div("doneButton").addEventListener("click", () => {
+  ;(div("doneButton").firstChild as HTMLDivElement).innerHTML = "READY!"
+  input("searchInput").disabled = true
+
+  Rune.actions.ready()
+})
+
 input("searchInput").addEventListener("keyup", async (e) => {
   if (e.key === "Enter" || e.keyCode === 13) {
     const term = input("searchInput").value.trim()
@@ -57,6 +66,7 @@ input("searchInput").addEventListener("keyup", async (e) => {
             name: localPlayerName,
             search: term,
           })
+          div("doneButton").style.display = "block"
         })
         div("searchResults").appendChild(img)
       }
@@ -97,6 +107,10 @@ Rune.initClient({
     }
     if (event && event.name === "stateSync") {
       if (event.isNewGame) {
+        div("doneButton").style.display = "none"
+        input("searchInput").disabled = false
+        input("searchInput").value = ""
+
         showScreen("startScreen")
         div("promptTimerBar").style.width = "0%"
         started = false
