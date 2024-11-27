@@ -113,6 +113,7 @@ Rune.initClient({
     if (event && event.name === "stateSync") {
       if (event.isNewGame) {
         div("doneButton").style.display = "none"
+        ;(div("doneButton").firstChild as HTMLDivElement).innerHTML = "Submit"
         input("searchInput").disabled = false
         input("searchInput").value = ""
 
