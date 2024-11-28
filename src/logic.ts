@@ -89,14 +89,12 @@ Rune.initLogic({
           messages: [{ role: "user", content: RESPONSE_PROMPT + input }],
         })
       } else if (game.timerName === "outcome") {
-        Rune.gameOver()
+        Rune.gameOver({ everyone: "WON" })
       }
     }
   },
   ai: {
     promptResponse: ({ response }, { game }) => {
-      console.log(response)
-
       let outcome = false
       const lines = response.split("\n")
       for (const line of lines) {
