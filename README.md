@@ -1,5 +1,7 @@
 # Day 5 - GIF vs AI
 
+[Play!](https://join.rune.ai/game/HfUtYbv3-hwE) | [Kick Off](https://www.youtube.com/watch?v=GGIl9zjuZ-w) | [Time Lapse](https://www.youtube.com/watch?v=eZtJVbPrGr4) | [Post-Mortem](https://www.youtube.com/watch?v=H9ourtJtU4UQ)
+
 The fifth in the series of 7 AI games in 7 days written for the [Rune](https://rune.ai) games app.
 
 ![gif-vs-ai](https://github.com/user-attachments/assets/2ef6d77b-b748-4fd1-92c0-20611085a5b6)
