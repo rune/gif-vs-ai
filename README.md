@@ -1,28 +1,7 @@
-# Getting Started with Rune
+# Day 5 - GIF vs AI
 
-### `npm run dev`
+The fifth in the series of 7 AI games in 7 days written for the [Rune](https://rune.ai) games app.
 
-Runs the game in Dev UI.
+![gif-vs-ai](https://github.com/user-attachments/assets/2ef6d77b-b748-4fd1-92c0-20611085a5b6)
 
-The page will reload when you make changes.
-
-### `npm run upload`
-
-Builds the game and starts upload process to Rune.
-
-### `npm run build`
-
-Builds the game. You can then upload it to Rune using `npx rune@latest upload`.
-
-### `npm run lint`
-
-Runs the validation rules. You can read about them in the [docs on server-side logic](https://developers.rune.ai/docs/advanced/server-side-logic).
-
-### `npm run typecheck`
-
-Verifies that TypeScript is valid.
-
-
-## Learn More
-
-See the [Rune docs](https://developers.rune.ai/docs/quick-start) for more info. You can also ask any questions in the [Rune Discord](https://discord.gg/rune-devs), we're happy to help!
+Probably the player favorite so far is GIF vs AI - a twist on the popular Death by AI game. The AI generates a life threatening scenario and a GIF is chosen to represent it. Players then have to respond with how they'll attempt to survive by selecting a GIF. Finally the AI evaluates the scenario and the provided survival GIF to determine if the player survives and selects a GIF to represent the outcome. Adding in the GIFs makes the game faster to play and the AI interpretation of the GIF can lead to un-intended and funny outcomes. 
