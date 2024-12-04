@@ -149,7 +149,6 @@ Rune.initLogic({
               .substring(line.indexOf(":") + 1)
               .trim()
               .toLowerCase() === "yes"
-          console.log(name, line, survived)
           for (const id in game.responses) {
             const response = game.responses[id]
             if (response.name.toLowerCase() === name.toLowerCase()) {
