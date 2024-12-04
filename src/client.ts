@@ -206,7 +206,7 @@ Rune.initClient({
     }
     if (game.timerName === "outcome") {
       showScreen("outcomeScreen")
-      const remaining =  game.timerEndsAt - Rune.gameTime()
+      const remaining = game.timerEndsAt - Rune.gameTime()
       const thru = game.playerOrder.length * OUTCOME_TIMER - remaining
       const index = Math.floor(thru / OUTCOME_TIMER)
       if (index < game.playerOrder.length) {
