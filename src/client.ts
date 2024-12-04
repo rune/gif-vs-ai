@@ -34,7 +34,6 @@ async function getGifs(query: string, limit: number) {
 
   const json = await response.json()
 
-  console.log(json)
   return json
 }
 
@@ -105,6 +104,30 @@ function showScreen(screen: string) {
   }
 }
 
+let timerEndsAt = 0
+let timerTotalTime = 0
+let timerName = ""
+
+requestAnimationFrame(() => {
+  updateTimer()
+})
+
+function updateTimer() {
+  requestAnimationFrame(() => {
+    updateTimer()
+  })
+
+  const remaining = timerEndsAt - Date.now()
+  const percent = (1 - Math.max(0, remaining) / timerTotalTime) * 82 + "%"
+
+  if (timerName === "prompt") {
+    div("promptTimerBar").style.width = percent
+  }
+  if (timerName === "respond") {
+    div("responseTimerBar").style.width = percent
+  }
+}
+
 Rune.initClient({
   onChange: ({ game, event, yourPlayerId }) => {
     if (yourPlayerId) {
@@ -116,6 +139,7 @@ Rune.initClient({
         ;(div("doneButton").firstChild as HTMLDivElement).innerHTML = "Submit"
         input("searchInput").disabled = false
         input("searchInput").value = ""
+        div("searchResults").innerHTML = ""
 
         showScreen("startScreen")
         div("promptTimerBar").style.width = "0%"
@@ -170,19 +194,19 @@ Rune.initClient({
       showScreen("thinkingScreen")
     }
 
-    const remaining = game.timerEndsAt - Rune.gameTime()
-    const percent =
-      (1 - Math.max(0, remaining) / game.timerTotalTime) * 82 + "%"
+    timerEndsAt = Date.now() + (game.timerEndsAt - Rune.gameTime())
+    timerTotalTime = game.timerTotalTime
+    timerName = game.timerName
+
     if (game.timerName === "prompt") {
       showScreen("promptScreen")
-      div("promptTimerBar").style.width = percent
     }
     if (game.timerName === "respond") {
       showScreen("responseScreen")
-      div("responseTimerBar").style.width = percent
     }
     if (game.timerName === "outcome") {
       showScreen("outcomeScreen")
+      const remaining =  game.timerEndsAt - Rune.gameTime()
       const thru = game.playerOrder.length * OUTCOME_TIMER - remaining
       const index = Math.floor(thru / OUTCOME_TIMER)
       if (index < game.playerOrder.length) {

@@ -25,9 +25,10 @@ export const RESPONSE_PROMPT =
   "I will provide you scenario, and the description of each player's selected GIF. Interpret the GIF description as an action from the player rather than the content of the GIF.\n" +
   "For each player provide an outcome, i.e. whether they survived or not in a short single sentence.\n" +
   "Along with the outcome provide a search term that can be used to look up a GIF representing the outcome.\n" +
-  "Provide the outcome of the scenario on a line starting with Outcome:.\n" +
-  "Provide the GIF search term for the outcome on a line starting with OutcomeTerm:.\n" +
-  "Player's action should result in death 9 out of 10 times.\n" +
+  "Provide the outcome of the scenario on a line starting with Outcome <player name>:.\n" +
+  "Provide the GIF search term for the outcome on a line starting with OutcomeTerm <player name>:.\n" +
+  "Provide a yes/no answer to whether the player survived based on their strategy on a line start with Survived <player name>:.\n" +
+  "Player's action should result in death 7 out of 10 times. At least one player should survive.\n" +
   "\n" +
   "For example: \n" +
   "\n" +
@@ -37,9 +38,12 @@ export const RESPONSE_PROMPT =
   "Player shane helm: a giant jar being unscrewed.\n" +
   "Outcome kev: Kev attempts to hide in a pool of water but the bugs can swim and eat him anyway.\n" +
   "OutcomeTerm kev: bugs eating man\n" +
+  "Success kev: no\n" +
   "Outcome coke and code: Coke and Code learns to fly and swoops away from the bugs saving himself.\n" +
   "OutcomeTerm coke and code: flying away\n" +
+  "Success coke and code: yes\n" +
   "Outcome shane helm: Shane Helm attempts to catch the bugs in a giant jar but they escape and overcome him!\n" +
-  "OutcomeTerm kev: overcome with bugs\n" +
+  "OutcomeTerm shane helm: overcome with bugs\n" +
+  "Success shane helm: no\n" +
   "\n" +
   "Here is the input scenario and player image descriptions:\n"

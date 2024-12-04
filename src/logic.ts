@@ -1,4 +1,4 @@
-import type { RuneClient } from "rune-sdk"
+import type { GameOverResult, PlayerId, RuneClient } from "rune-sdk"
 import { RESPONSE_PROMPT, SCENARIO_PROMPT } from "./prompt"
 
 const PROMPT_TIMER = 10000
@@ -21,6 +21,7 @@ export interface GameState {
   scenarioTerm: string
   activePlayer: string
   responses: Record<string, GifData>
+  survived: Record<string, boolean>
   started: boolean
   timerTotalTime: number
   timerEndsAt: number
@@ -65,10 +66,11 @@ Rune.initLogic({
       prompting: false,
       playerOrder: [],
       ready: {},
+      survived: {},
     }
   },
   updatesPerSecond: 10,
-  update: ({ game }) => {
+  update: ({ game, allPlayerIds }) => {
     // run timers
     if (Rune.gameTime() > game.timerEndsAt && game.timerEndsAt !== 0) {
       if (game.timerName === "prompt") {
@@ -89,7 +91,11 @@ Rune.initLogic({
           messages: [{ role: "user", content: RESPONSE_PROMPT + input }],
         })
       } else if (game.timerName === "outcome") {
-        Rune.gameOver({ everyone: "WON" })
+        const players: Record<PlayerId, GameOverResult> = {}
+        for (const id of allPlayerIds) {
+          players[id] = game.survived[id] ? "WON" : "LOST"
+        }
+        Rune.gameOver({ players, minimizePopUp: true })
       }
     }
   },
@@ -129,6 +135,25 @@ Rune.initLogic({
               response.outcomeTerm = line
                 .substring(line.indexOf(":") + 1)
                 .trim()
+            }
+          }
+          game.prompting = false
+          outcome = true
+        }
+        if (line.startsWith("Survived")) {
+          const name = line
+            .substring(line.indexOf(" ") + 1, line.indexOf(":"))
+            .trim()
+          const survived =
+            line
+              .substring(line.indexOf(":") + 1)
+              .trim()
+              .toLowerCase() === "yes"
+          console.log(name, line, survived)
+          for (const id in game.responses) {
+            const response = game.responses[id]
+            if (response.name.toLowerCase() === name.toLowerCase()) {
+              game.survived[id] = survived
             }
           }
           game.prompting = false
